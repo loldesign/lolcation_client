@@ -1,4 +1,4 @@
-module Lolcation
+module LolcationClient
   class AttributeMap
   end
 end

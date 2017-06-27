@@ -1,8 +1,8 @@
 require "spec_helper"
 
-RSpec.describe Lolcation do
+RSpec.describe lolcation_client do
   it "has a version number" do
-    expect(Lolcation::VERSION).not_to be nil
+    expect(LolcationClient::VERSION).not_to be nil
   end
 
   it "does something useful" do

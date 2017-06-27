@@ -1,7 +1,7 @@
-module Lolcation
+module LolcationClient
   class Predicates
     #  class Localization
-    #    extend Lolcation
+    #    extend lolcation_client
     #    lolcalize latitude: :custom_latitude, longitude: :custom_longitude
     #    or even
     #    lolcalize! (this should assume that is the standards names)
