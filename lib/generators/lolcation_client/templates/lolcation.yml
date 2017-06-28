@@ -1,0 +1,6 @@
+development:
+  token: 'Insert your token here'
+staging:
+  token: 'Insert your token here'
+production:
+  token: 'Insert your token here'

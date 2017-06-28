@@ -1,13 +1,12 @@
-require 'httparty'
+require 'faraday'
 require_relative 'configurations'
 
 module LolcationClient
   module Interceptor
     def self.included(model)
       model.send(:before_save) do
-        latitude, longitude = self.latitude, self.longitude
-        custom_attributes = set_custom_attributes
-        response = send_to_lolcation_server.parsed_response
+        @custom_fields = set_custom_fields
+        response = send_to_lolcation_server
 
         # DO STUFF WIP
 
@@ -21,12 +20,20 @@ module LolcationClient
       configs['token']
     end
 
-    def custom_attributes
-      self.try(:lolcation_custom_attributes) || configs['custom_attributes']
+    def custom_fields
+      self.try(:lolcation_custom_fields) || configs['custom_fields']
     end
 
-    def set_custom_attributes
-      custom_attributes.map {|attribute| {attribute => self.try(attribute)}}
+    def set_custom_fields
+      attributes = custom_fields.map {|attribute| {attribute => self.try(attribute)}}
+      hash = {}
+      attributes.each do |attribute|
+        attribute.each do |key, value|
+          hash[key] = value
+        end
+      end
+
+      hash
     end
 
     def configs
@@ -35,14 +42,16 @@ module LolcationClient
 
     def send_to_lolcation_server
       url = LolcationClient::Configurations::URL
-      headers = {headers: {"X-Token" => token}}
-      body = {body: prepare_object_to_post}
-      request_options = headers.merge(body)
-      HTTParty.post(url, request_options)
+      conn = Faraday.new(url: url)
+      conn.headers.merge!({"X-Token" => token})
+      conn.post do |r|
+        r.headers['Content-Type'] = 'application/json'
+        r.body = prepare_object_to_post.to_json
+      end
     end
 
     def prepare_object_to_post
-      {localization: {latitude: self.latitude, longitude: self.longitude, name: self.name}}
+      {localization: {latitude: self.latitude, longitude: self.longitude, name: self.name, custom_fields: set_custom_fields}}
     end
   end
 end
