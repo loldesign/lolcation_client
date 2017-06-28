@@ -5,7 +5,7 @@ require "lolcation_client/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "lolcation_client"
-  spec.version       = lolcation_client::VERSION
+  spec.version       = LolcationClient::VERSION
   spec.authors       = ["Marcelo Barreto"]
   spec.email         = ["marcelobarretojunior@gmail.com"]
 
@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_dependency('activesupport', '>= 3.2')
+  spec.add_dependency('httparty', '>= 0.15')
 end
