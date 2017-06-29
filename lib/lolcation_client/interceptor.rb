@@ -5,23 +5,24 @@ module LolcationClient
   module Interceptor
     def self.included(model)
       model.send(:before_save) do
-        @custom_fields = set_custom_fields
         response = send_to_lolcation_server
-
-        # DO STUFF WIP
-
-        # After create on parse, should save lolcation_id on BD
+        parsed_response = JSON.parse(response.body)
+        self.lolcation_id = parsed_response['localization']['objectId']
       end
     end
 
     private
+
+    def configs
+      Rails.application.config_for(:lolcation)
+    end
 
     def token
       configs['token']
     end
 
     def custom_fields
-      self.try(:lolcation_custom_fields) || configs['custom_fields']
+      self.try(:lolcation_custom_fields)
     end
 
     def set_custom_fields
@@ -36,10 +37,6 @@ module LolcationClient
       hash
     end
 
-    def configs
-      Rails.application.config_for(:lolcation)
-    end
-
     def send_to_lolcation_server
       url = LolcationClient::Configurations::URL
       conn = Faraday.new(url: url)
@@ -51,7 +48,19 @@ module LolcationClient
     end
 
     def prepare_object_to_post
-      {localization: {latitude: self.latitude, longitude: self.longitude, name: self.name, custom_fields: set_custom_fields}}
+      {
+        localization: {
+          latitude: self.lolcation_latitude,
+          longitude: self.lolcation_longitude,
+          name: self.lolcation_name,
+          address_street: self.lolcation_address_street,
+          address_neighborhood: self.lolcation_address_neighborhood,
+          address_city: self.lolcation_address_city,
+          address_state: self.lolcation_address_state,
+          address_number: self.lolcation_address_number,
+          custom_fields: set_custom_fields
+        }
+      }
     end
   end
 end
