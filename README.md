@@ -7,13 +7,32 @@
 
 A Rails GEM to use Lolcation Service.
 
-## Instalation
+## Getting started
+You can add it to your Gemfile with:
 
-Install LOLCATION CLIENT from rubygems with the command:
+gem 'lolcation_client'
+Then run bundle install
 
-```bash
-$ gem install lolcation_client
+Next, you need to run the generator:
+
+`$ rails generate lolcation:install`
+
+and
+
+```ruby
+  class LolcalizationModel < ApplicationRecord
+    extend LolcationClient
+  end
 ```
+
+`$ rails generate lolcation:migration MODEL`
+
+then run:
+
+`$ rails db:migrate`
+
+
+DO NOT FORGET TO SET UP YOUR LOLCATION TOKEN AT `config/lolcation.yml`
 
 ## Versioning
 

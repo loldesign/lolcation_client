@@ -12,8 +12,4 @@ class AddLolcationTo<%= table_name.camelize %> < ActiveRecord::Migration
       t.string :lolcation_address_number
     end
   end
-
-  def self.down
-    raise ActiveRecord::IrreversibleMigration
-  end
 end
