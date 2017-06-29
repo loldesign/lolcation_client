@@ -30,7 +30,7 @@ module LolcationClient
     end
 
     def custom_fields
-      self.try(:lolcation_custom_fields)
+      self.class.try(:lolcation_custom_fields) || []
     end
 
     def set_custom_fields

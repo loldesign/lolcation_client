@@ -24,6 +24,15 @@ and
     extend LolcationClient
   end
 ```
+You can also define lolcation_custom_fields, so you can filter later when you need
+
+```ruby
+class LolcalizationModel < ApplicationRecord
+  extend LolcationClient
+
+  lolcation_custom_fields :foo, :bar, :baz
+end
+```
 
 `$ rails generate lolcation:migration MODEL`
 
