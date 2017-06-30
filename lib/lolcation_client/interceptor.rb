@@ -5,7 +5,12 @@ module LolcationClient
   module Interceptor
     def self.included(model)
       model.send(:after_validation) do
-        response = post_on_lolcation_server
+        if self.lolcation_id.present?
+          response = patch_on_lolcation_server
+        else
+          response = post_on_lolcation_server
+        end
+
         parsed_response = JSON.parse(response.body)
         if parsed_response["error"]
           self.errors.add(:base, parsed_response["error"])
@@ -66,6 +71,16 @@ module LolcationClient
       url = LolcationClient::Configurations::URL
       conn = Faraday.new(url: url)
       conn.post do |r|
+        r.headers["X-Token"] = token
+        r.headers["Content-Type"] = "application/json"
+        r.body = prepare_object_to_post.to_json
+      end
+    end
+
+    def patch_on_lolcation_server
+      url = LolcationClient::Configurations::URL
+      conn = Faraday.new(url: "#{url}#{self.lolcation_id}")
+      conn.put do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"
         r.body = prepare_object_to_post.to_json
