@@ -85,7 +85,7 @@ This gem was created and is maintained by [LolDesign](https://github.com/loldesi
 [ruby_gems]: http://rubygems.org/gems/lolcation_client
 [code_climate]: https://codeclimate.com/github/loldesign/lolcation_client
 [code_climate_badge]: http://img.shields.io/codeclimate/github/loldesign/lolcation_client.svg?style=flat
-[gemnasium]: https://gemnasium.com/loldesign/pah
+[gemnasium]: https://gemnasium.com/loldesign/lolcation_client
 [gemnasium_badge]: http://img.shields.io/gemnasium/loldesign/lolcation_client.svg?style=flat
-[travis]: https://travis-ci.org/loldesign/pah
+[travis]: https://travis-ci.org/loldesign/lolcation_client
 [travis_badge]: http://img.shields.io/travis/loldesign/lolcation_client/master.svg?style=flat
