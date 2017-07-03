@@ -34,6 +34,10 @@ module LolcationClient
       configs["token"]
     end
 
+    def sandbox?
+      configs["sandbox"] || false
+    end
+
     def custom_fields
       self.class.try(:lolcation_custom_fields) || []
     end
@@ -54,16 +58,16 @@ module LolcationClient
       {
         localization: {
           latitude: self.try(:lolcation_latitude),
-          longitude: self.lolcation_longitude,
+          longitude: self.try(:lolcation_longitude),
           name: self.try(:lolcation_name),
-          address_street: self.lolcation_address_street,
-          address_neighborhood: self.lolcation_address_neighborhood,
-          address_city: self.lolcation_address_city,
-          address_state: self.lolcation_address_state,
-          address_number: self.lolcation_address_number,
+          address_street: self.try(:lolcation_address_street),
+          address_neighborhood: self.try(:lolcation_address_neighborhood),
+          address_city: self.try(:lolcation_address_city),
+          address_state: self.try(:lolcation_address_state),
+          address_number: self.try(:lolcation_address_number),
           custom_fields: set_custom_fields
         },
-        env: Rails.env || "development"
+        sandbox: sandbox?
       }
     end
 
@@ -79,7 +83,7 @@ module LolcationClient
 
     def patch_on_lolcation_server
       url = LolcationClient::Configurations::URL
-      conn = Faraday.new(url: "#{url}#{self.lolcation_id}")
+      conn = Faraday.new(url: "#{url}/#{self.lolcation_id}")
       conn.put do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"

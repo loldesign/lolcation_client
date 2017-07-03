@@ -1,6 +1,8 @@
 development:
   token: 'Insert your token here'
+  sandbox: true
 staging:
   token: 'Insert your token here'
+  sandbox: true
 production:
   token: 'Insert your token here'
