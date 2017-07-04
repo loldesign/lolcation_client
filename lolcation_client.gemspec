@@ -6,8 +6,8 @@ require "lolcation_client/version"
 Gem::Specification.new do |spec|
   spec.name          = "lolcation_client"
   spec.version       = LolcationClient::VERSION
-  spec.authors       = ["Marcelo Barreto"]
-  spec.email         = ["marcelobarretojunior@gmail.com"]
+  spec.authors       = ["Eduardo Zaghi", "Marcelo Barreto"]
+	spec.email         = ["eduardo@loldesign.com.br", "marcelobarretojunior@gmail.com"]
 
   spec.summary       = %q{Write a short summary, because Rubygems requires one.}
   spec.description   = %q{Write a longer description or delete this line.}
