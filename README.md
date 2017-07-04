@@ -15,7 +15,7 @@ Then run bundle install
 
 Next, you need to run the generator:
 
-`$ rails generate lolcation:install`
+`$ rails generate lolcation_client:install`
 
 and
 
@@ -34,7 +34,7 @@ class LolcalizationModel < ApplicationRecord
 end
 ```
 
-`$ rails generate lolcation:migration MODEL`
+`$ rails generate lolcation_client:migration MODEL`
 
 then run:
 
