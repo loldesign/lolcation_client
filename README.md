@@ -34,7 +34,7 @@ class LolcalizationModel < ApplicationRecord
 end
 ```
 
-`$ rails generate lolcation:migration MODEL`
+`$ rails generate lolcation_client:migration MODEL`
 
 then run:
 
