@@ -15,7 +15,7 @@ Then run bundle install
 
 Next, you need to run the generator:
 
-`$ rails generate lolcation:install`
+`$ rails generate lolcation_client:install`
 
 and
 
