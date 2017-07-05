@@ -41,8 +41,14 @@ then run:
 
 `$ rails db:migrate`
 
-
 DO NOT FORGET TO SET UP YOUR LOLCATION TOKEN AT `config/lolcation.yml`
+
+## Find closest localizations with the method `near_me`
+```ruby
+LocalizationModel.near_in(latitude: lat, longitude: lgt, distance: 10.0, filter: {foo: 'bar'})
+```
+
+* Note that filter will look up for custom_fields!
 
 ## Versioning
 
