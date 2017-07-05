@@ -80,7 +80,7 @@ Follow this steps to release a new version of the gem.
 
 ## Made with love by LolDesign
 
-![LolDesign](http://novo.loldesign.com.br/wp-content/uploads/2015/12/LolDesign.svg)
+<img src="http://novo.loldesign.com.br/wp-content/uploads/2015/12/LolDesign.svg" width="150">
 
 This gem was created and is maintained by [LolDesign](https://github.com/loldesign).
 
