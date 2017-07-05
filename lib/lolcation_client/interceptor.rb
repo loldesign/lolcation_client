@@ -3,6 +3,8 @@ require_relative "configurations"
 
 module LolcationClient
   module Interceptor
+    include LolcationClient::Configurations
+
     def self.included(model)
       model.send(:after_validation) do
         if self.lolcation_id.present?
@@ -17,6 +19,8 @@ module LolcationClient
           false
         elsif parsed_response['localization']
           self.lolcation_id = parsed_response["localization"]["objectId"]
+          self.lolcation_latitude = parsed_response["localization"]["latitude"]
+          self.lolcation_longitude = parsed_response["localization"]["longitude"]
         else
           parsed_response.map {|error, message| self.errors.add("lolcation_#{error}", message[0])}
           false
@@ -25,18 +29,6 @@ module LolcationClient
     end
 
     private
-
-    def configs
-      Rails.application.config_for(:lolcation)
-    end
-
-    def token
-      configs["token"]
-    end
-
-    def sandbox?
-      configs["sandbox"] || false
-    end
 
     def custom_fields
       self.class.try(:lolcation_custom_fields) || []

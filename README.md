@@ -24,12 +24,13 @@ and
     extend LolcationClient
   end
 ```
-You can also define lolcation_custom_fields, so you can filter later when you need
+You can also define lolcation_fields and lolcation_custom_fields, so you can filter later when you need
 
 ```ruby
 class LolcalizationModel < ApplicationRecord
   extend LolcationClient
 
+  lolcation_fields latitude: :my_latitude_attr, address_street: :my_street_attr
   lolcation_custom_fields :foo, :bar, :baz
 end
 ```
