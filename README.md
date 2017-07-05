@@ -2,7 +2,6 @@
 [![Build Status][travis_badge]][travis]
 [![RubyGems][gem_version_badge]][ruby_gems]
 [![Code Climate][code_climate_badge]][code_climate]
-[![Gemnasium][gemnasium_badge]][gemnasium]
 [![RubyGems][gem_downloads_badge]][ruby_gems]
 
 A Rails GEM to use Lolcation Service.
@@ -92,7 +91,5 @@ This gem was created and is maintained by [LolDesign](https://github.com/loldesi
 [ruby_gems]: http://rubygems.org/gems/lolcation_client
 [code_climate]: https://codeclimate.com/github/loldesign/lolcation_client
 [code_climate_badge]: http://img.shields.io/codeclimate/github/loldesign/lolcation_client.svg?style=flat
-[gemnasium]: https://gemnasium.com/loldesign/lolcation_client
-[gemnasium_badge]: http://img.shields.io/gemnasium/loldesign/lolcation_client.svg?style=flat
 [travis]: https://travis-ci.org/loldesign/lolcation_client
 [travis_badge]: http://img.shields.io/travis/loldesign/lolcation_client/master.svg?style=flat
