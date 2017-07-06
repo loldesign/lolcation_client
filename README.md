@@ -7,16 +7,22 @@
 A Rails GEM to use Lolcation Service.
 
 ## Getting started
-You can add it to your Gemfile with:
+Add to your `Gemfile`:
 
+```
 gem 'lolcation_client'
+```
+
 Then run bundle install
 
-Next, you need to run the generator:
+Run the generator:
 
-`$ rails generate lolcation_client:install`
+```
+rails generate lolcation_client:install`
+```
 
-and
+In your model add follow code:
+
 
 ```ruby
   class LolcalizationModel < ApplicationRecord
@@ -34,15 +40,34 @@ class LolcalizationModel < ApplicationRecord
 end
 ```
 
-`$ rails generate lolcation_client:migration MODEL`
+Run the generator to create location fields:
 
-then run:
+```
+rails generate lolcation_client:migration MODEL
+```
 
-`$ rails db:migrate`
+Run your migrate:
 
-DO NOT FORGET TO SET UP YOUR LOLCATION TOKEN AT `config/lolcation.yml`
+```
+rails db:migrate
+```
 
-## Find closest localizations with the method `near_me`
+You must set your __token at :__ `config/lolcation.yml`
+
+```
+development:
+  token: 'TOKEN'
+  sandbox: true
+staging:
+  token: 'TOKEN'
+  sandbox: true
+production:
+  token: 'TOKEN'
+
+```
+
+## Finding closest localizations with the method `near_me` method
+
 ```ruby
 LocalizationModel.near_in(latitude: lat, longitude: lgt, distance: 10.0, filter: {foo: 'bar'})
 ```
