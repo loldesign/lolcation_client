@@ -7,9 +7,18 @@ module LolcationClient
 
     def near_in(options = {})
       raise ArgumentError, 'You must pass latitude and longitude as params' unless options[:latitude] || options[:longitude]
-      response = grab_objects(options)
-      parse_response = JSON.parse(response.body)
-      parse_response['localizations']
+
+      parse_response(grab_objects(options), options)
+    end
+
+    def parse_response(response, options)
+      json = JSON.parse(response.body, object_class: OpenStruct)
+
+      list = json['localizations']
+
+      return list.map(&:objectId) if options[:only_ids]
+
+      list
     end
 
     private
@@ -20,7 +29,7 @@ module LolcationClient
       conn.post do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"
-        r.body = options.to_json
+        r.body = options
       end
     end
   end
