@@ -29,7 +29,7 @@ module LolcationClient
       conn.post do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"
-        r.body = options
+        r.body = options.to_json
       end
     end
   end
