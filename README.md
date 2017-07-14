@@ -74,6 +74,13 @@ LocalizationModel.near_in(latitude: lat, longitude: lgt, distance: 10.0, filter:
 
 * Note that filter will look up for custom_fields!
 
+If you want just return the lolcationId field, just add option __only_ids: true__ like:
+
+```ruby
+LocalizationModel.near_in(latitude: lat, longitude: lgt, distance: 10.0, filter: {foo: 'bar'}, only_ids: true)
+
+```
+
 ## Versioning
 
 LOLCATION CLIENT follows the [Semantic Versioning](http://semver.org/) standard.
