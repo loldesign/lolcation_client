@@ -15,15 +15,13 @@ module LolcationClient
 
         json = JSON.parse(response.body, object_class: OpenStruct)
 
-        if json.error.present?
-          self.errors.add(:base, json.error)
-          false
-        elsif json.localization.present?
-          self.lolcation_id = json.localization.id
-          self.lolcation_latitude = json.localization.latitude
-          self.lolcation_longitude = json.localization.longitude
+        if json.success
+          self.lolcation_id = json.id
+          self.lolcation_latitude = json.latitude
+          self.lolcation_longitude = json.longitude
+          true
         else
-          json.map {|error, message| self.errors.add("lolcation_#{error}", message[0])}
+          self.errors.add(:base, json.error)
           false
         end
       end
