@@ -16,7 +16,7 @@ module LolcationClient
 
       list = json['localizations']
 
-      return list.map(&:objectId) if options[:only_ids]
+      return list.map{|item| item.id.to_i} if options[:only_ids]
 
       list
     end
