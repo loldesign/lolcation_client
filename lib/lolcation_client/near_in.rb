@@ -6,12 +6,12 @@ module LolcationClient
     include LolcationClient::Configurations
 
     def near_in(options = {})
-      raise ArgumentError, 'You must pass latitude and longitude as params' unless options[:latitude] || options[:longitude]
+      raise ArgumentError, 'Latitude and Longitude is required' unless options[:latitude].present? || options[:longitude].present?
 
-      parse_response(grab_objects(options), options)
+      process(do_post(options), options)
     end
 
-    def parse_response(response, options)
+    def process(response, options)
       json = JSON.parse(response.body, object_class: OpenStruct)
 
       list = json['localizations']
@@ -23,7 +23,7 @@ module LolcationClient
 
     private
 
-    def grab_objects(options = {})
+    def do_post(options = {})
       url = LolcationClient::Configurations::URL
       conn = Faraday.new(url: "#{url}/near-me")
       conn.post do |r|
