@@ -10,6 +10,7 @@ class AddLolcationTo<%= table_name.camelize %> < ActiveRecord::Migration
       t.string :lolcation_address_city
       t.string :lolcation_address_state
       t.string :lolcation_address_number
+      t.string :lolcation_address_zipcode
     end
   end
 end
