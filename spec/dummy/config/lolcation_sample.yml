@@ -1,0 +1,8 @@
+development:
+  token: ''
+  sandbox: true
+staging:
+  token: ''
+  sandbox: true
+production:
+  token: ''
