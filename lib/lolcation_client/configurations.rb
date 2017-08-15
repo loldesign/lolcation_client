@@ -1,6 +1,9 @@
 module LolcationClient
   module Configurations
-    URL = "https://lolcation-service.loldesign.com.br/api/v1/localizations"
+    API = "/api/v1/localizations"
+    URL = Rails.env.development?
+            ? "http://localhost:8000#{API}" 
+            : "https://lolcation-service.loldesign.com.br#{API}"
 
     def configs
       Rails.application.config_for(:lolcation)
