@@ -65,8 +65,7 @@ module LolcationClient
     end
 
     def create_on_lolcation_server
-      url = LolcationClient::Configurations::URL
-      conn = Faraday.new(url: url)
+      conn = Faraday.new(url: service_url)
       conn.post do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"
@@ -75,8 +74,7 @@ module LolcationClient
     end
 
     def update_on_lolcation_server
-      url = LolcationClient::Configurations::URL
-      conn = Faraday.new(url: "#{url}/#{self.lolcation_id}")
+      conn = Faraday.new(url: "#{service_url}/#{self.lolcation_id}")
       conn.put do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"

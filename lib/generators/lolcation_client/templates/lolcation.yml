@@ -1,8 +1,11 @@
 development:
+  servie_url: 'https://lolcation-service.loldesign.com.br'
   token: 'Insert your token here'
   sandbox: true
 staging:
+  servie_url: 'https://lolcation-service.loldesign.com.br'
   token: 'Insert your token here'
   sandbox: true
 production:
+  servie_url: 'https://lolcation-service.loldesign.com.br'
   token: 'Insert your token here'

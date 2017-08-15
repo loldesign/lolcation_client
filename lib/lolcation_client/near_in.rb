@@ -24,8 +24,7 @@ module LolcationClient
     private
 
     def do_post(options = {})
-      url = LolcationClient::Configurations::URL
-      conn = Faraday.new(url: "#{url}/near-me")
+      conn = Faraday.new(url: "#{service_url}/near-me")
       conn.post do |r|
         r.headers["X-Token"] = token
         r.headers["Content-Type"] = "application/json"
