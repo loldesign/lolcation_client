@@ -7,7 +7,7 @@ module LolcationClient
 
     def self.included(model)
       model.send(:after_validation) do
-        if self.persisted?
+        if self.lolcation_id.present?
           response = update_on_lolcation_server
         else
           response = create_on_lolcation_server
@@ -33,7 +33,7 @@ module LolcationClient
       self.class.try(:lolcation_custom_fields) || []
     end
 
-    def build_custom_fields
+    def build_filter_fields
       attributes = custom_fields.map {|attribute| {attribute => self.try(attribute)}}
       hash       = {}
 
@@ -58,7 +58,7 @@ module LolcationClient
           address_state:        self.try(:lolcation_address_state),
           address_number:       self.try(:lolcation_address_number),
           address_zipcode:      self.try(:lolcation_address_zipcode),
-          #custom_fields:        build_custom_fields
+          filters:              build_filter_fields
         },
         sandbox: sandbox?
       }.to_json
