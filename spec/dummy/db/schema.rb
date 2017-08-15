@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801183400) do
+ActiveRecord::Schema.define(version: 20170815140544) do
 
   create_table "places", force: :cascade do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.float    "lolcation_latitude"
     t.float    "lolcation_longitude"
     t.integer  "lolcation_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170801183400) do
     t.string   "lolcation_address_state"
     t.string   "lolcation_address_number"
     t.string   "lolcation_address_zipcode"
+    t.boolean  "active",                         default: false
   end
 
 end
