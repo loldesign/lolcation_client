@@ -58,9 +58,9 @@ module LolcationClient
           address_state:        self.try(:lolcation_address_state),
           address_number:       self.try(:lolcation_address_number),
           address_zipcode:      self.try(:lolcation_address_zipcode),
-          filters:              build_filter_fields
-        },
-        sandbox: sandbox?
+          filters:              build_filter_fields,
+          sandbox:              sandbox?
+        }
       }.to_json
     end
 
