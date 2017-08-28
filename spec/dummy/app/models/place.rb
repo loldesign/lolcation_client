@@ -4,6 +4,9 @@ class Place < ApplicationRecord
 	lolcation_custom_fields :active
 end
 
+# ---
+# WITH ADDRESS
+# ---
 
 # place = Place.create(
 # 	lolcation_name: 'caso do edu e da shi',
@@ -13,4 +16,14 @@ end
 # 	lolcation_address_state: 'sp',
 # 	lolcation_address_number: '120',
 # 	lolcation_address_zipcode: '01520-030',
+# )
+
+# ---
+# WITH LAT & LGN
+# ---
+
+# place = Place.create(
+# 	lolcation_latitude: -23.5659256,
+# 	lolcation_longitude: -46.6274346,
+#   lolcation_name: 'Loldesign'
 # )

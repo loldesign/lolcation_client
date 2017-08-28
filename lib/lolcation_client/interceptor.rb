@@ -21,7 +21,8 @@ module LolcationClient
           self.lolcation_longitude = json.longitude
           true
         else
-          self.errors.add(:base, json.error)
+          json.errors.collect{|error| self.errors.add("lolcation_#{error.field}", error.message)}
+
           false
         end
       end
