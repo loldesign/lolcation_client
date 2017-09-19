@@ -7,6 +7,21 @@ module LolcationClient
 
     def self.included(model)
       model.send(:after_validation) do
+        self.errors.add("lolcation_name", :blank) unless self.lolcation_name.present?
+
+        if self.lolcation_address_street.present?
+          self.errors.add("lolcation_address_neighborhood", :blank) unless self.lolcation_address_neighborhood.present?
+          self.errors.add("lolcation_address_city"        , :blank) unless self.lolcation_address_city.present?
+          self.errors.add("lolcation_address_state"       , :blank) unless self.lolcation_address_state.present?
+          self.errors.add("lolcation_address_number"      , :blank) unless self.lolcation_address_number.present?
+          self.errors.add("lolcation_address_zipcode"     , :blank) unless self.lolcation_address_zipcode.present?
+        else
+          self.errors.add("lolcation_latitude" , :blank)            unless self.lolcation_latitude.present?
+          self.errors.add("lolcation_longitude", :blank)            unless self.lolcation_longitude.present?
+        end
+      end
+
+      model.send(:after_save) do
         if self.lolcation_id.present?
           response = update_on_lolcation_server
         else

@@ -27,3 +27,5 @@ end
 # 	lolcation_longitude: -46.6274346,
 #   lolcation_name: 'Loldesign'
 # )
+
+# Place.near_in(latitude: '-23.5659256', longitude: '-46.6274346', distance: '0m')
