@@ -7,6 +7,7 @@ module LolcationClient
 
     def near_in(options = {})
       raise ArgumentError, 'Latitude and Longitude is required' unless options[:latitude].present? || options[:longitude].present?
+      raise ArgumentError, 'Distance must be grater than 0'     if     options[:distance] =~ /\A0/
 
       process(do_post(options.merge(sandbox: sandbox?)), options)
     end
