@@ -31,10 +31,9 @@ module LolcationClient
         json = JSON.parse(response.body, object_class: OpenStruct)
 
         if json.success
-          self.lolcation_id = json.id
-          self.lolcation_latitude = json.latitude
-          self.lolcation_longitude = json.longitude
-          true
+          self.update_column(:lolcation_id       , json.id)
+          self.update_column(:lolcation_latitude , json.latitude)
+          self.update_column(:lolcation_longitude, json.longitude)
         else
           json.errors.collect{|error| self.errors.add("lolcation_#{error.field}", error.message)}
 
